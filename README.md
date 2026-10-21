@@ -27,3 +27,9 @@ Estudo conceitual, com medidas aproximadas (paredes pelo eixo). Estrutura, conte
 e orçamento dependem de profissionais habilitados (ART/RRT) e da prefeitura. Nada aqui está aprovado tecnicamente.
 
 Esta página é gerada automaticamente a partir de um repositório privado de projeto; não edite os arquivos aqui.
+
+## Versões
+
+| Versão | Estado | Resumo |
+|---|---|---|
+| [v8](https://fernando2020.github.io/projeto-casa-maquete/v8/) (na raiz) | fechada | 90 m² pelo eixo, paredes internas de 10 cm |

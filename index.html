@@ -37,6 +37,9 @@ body{background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-appl
 .panel{position:absolute;top:16px;left:16px;width:300px;max-height:calc(100% - 32px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;box-shadow:0 6px 24px rgba(20,30,30,.12)}
 h1{font-size:19px;font-weight:700;margin:0 0 2px;letter-spacing:-.01em}
 .sub{font-size:13px;color:var(--muted);margin:0 0 14px}
+.vers{font-size:12px;color:var(--muted);margin:-8px 0 14px;line-height:1.8}
+.vers a{color:var(--accent);margin-right:10px;text-decoration:none;border-bottom:1px solid var(--line)}
+.vers b{color:var(--ink);margin-right:10px}
 .grp{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
 .grp h2{font-size:13px;font-weight:600;margin:0 0 8px;color:var(--ink)}
 .views{display:grid;grid-template-columns:1fr 1fr;gap:6px}
@@ -75,6 +78,7 @@ input[type=range]{width:100%;accent-color:var(--sun)}
     <button id="toggle" aria-expanded="true">Ocultar</button>
     <h1>Maquete de estudo</h1>
     <p class="sub" id="sub">Lote 12 × 25 m em aclive</p>
+    <p class="vers" id="vers" hidden></p>
     <div class="body">
       <div class="grp" style="border-top:0;margin-top:0;padding-top:0">
         <h2>Vista</h2>
@@ -111,6 +115,7 @@ input[type=range]{width:100%;accent-color:var(--sun)}
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="geometria.js"></script>
+<script src="versoes.js"></script>
 <script>
 (function(){
 if(!window.THREE){document.getElementById('err').style.display='grid';return;}
@@ -151,6 +156,15 @@ const mat={};Object.keys(CASA.materiais).forEach(k=>{mat[k]=M(CASA.materiais[k],
 mat.roof.flatShading=true;
 
 document.getElementById('sub').textContent='Lote 12 × 25 m em aclive, versão '+CASA.versao;
+// faixa de versões: versoes.js é gerado por scripts/publicar.py (na vitrine); sem ele (uso local) a faixa fica oculta
+(function(){const V=window.VERSOES,el=document.getElementById('vers');if(!V||V.length<2||!el)return;
+  const up=window.PASTA?'../':'',eu=window.PASTA||window.ATUAL;
+  el.hidden=false;el.append('Versões: ');
+  V.forEach(v=>{const nome=v.pasta+(v.estado==='estudo'?' · estudo':'');
+    if(v.pasta===eu){const b=document.createElement('b');b.textContent=nome;el.append(b);}
+    else{const a=document.createElement('a');a.href=up+v.pasta+'/';a.textContent=nome;el.append(a);}
+    if(v.pasta===eu&&v.estado==='estudo')document.getElementById('sub').textContent+=' · estudo em análise';});
+})();
 
 // plan coords: x across lot (0 = NW side), y depth from street (0 = street). world X=x-6, Z=12.5-y
 const groups={};
