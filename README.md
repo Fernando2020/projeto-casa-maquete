@@ -34,3 +34,4 @@ Esta página é gerada automaticamente a partir de um repositório privado de pr
 |---|---|---|
 | [v8](https://fernando2020.github.io/projeto-casa-maquete/v8/) (na raiz) | fechada | 90 m² pelo eixo, paredes internas de 10 cm |
 | [v9](https://fernando2020.github.io/projeto-casa-maquete/v9/) | estudo | 8,5 × 11,5 m, paredes de 15 cm, áreas úteis |
+| [v10](https://fernando2020.github.io/projeto-casa-maquete/v10/) | estudo | v9 1,5 m à frente: quintal de 5,5 m e garagem aberta com pilares |
